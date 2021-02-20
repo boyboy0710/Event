@@ -1,8 +1,14 @@
 package com.boyboy0710.event;
 
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class Main extends JavaPlugin {
+import java.util.List;
+
+public final class Main extends JavaPlugin implements TabExecutor, Listener {
 
     public void onEnable() {
         System.out.println("----------------------------------------------------------------------");
@@ -10,8 +16,8 @@ public final class Main extends JavaPlugin {
         System.out.println("               플러그인 제작자ㅣ:booyboy0710");
         System.out.println("----------------------------------------------------------------------");
 
-        getCommand("event").setExecutor(new Commands()); //Executor을 등록하는 매소드
-        getCommand("event").setTabCompleter(new Commands()); //TabCompleter을 등록하는 매소드
+        getCommand("event").setExecutor(new Main()); //Executor을 등록하는 매소드
+        getCommand("event").setTabCompleter(new Main()); //TabCompleter을 등록하는 매소드
 
         getConfig().options().copyDefaults(true);
         saveConfig();
@@ -21,4 +27,9 @@ public final class Main extends JavaPlugin {
         System.out.println("Event 플러그인이 비활성화 되었습니다");
     }
     public boolean BlockBreakEvent = getConfig().getBoolean("BlockBreakEvent");
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        return null;
+    }
 }
