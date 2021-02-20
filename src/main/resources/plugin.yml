@@ -1,0 +1,4 @@
+name: Event
+version: ${project.version}
+main: com.boyboy0710.event.Main
+api-version: 1.16
