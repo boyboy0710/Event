@@ -41,6 +41,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     public boolean BlockGrowEvent = true;
     public boolean SignChangeEvent = true;
     public boolean BlockPistonEvent = true;
+    public boolean BlockPistonExtendEvent = true;
 
     @EventHandler
     public void onInteract(BlockBreakEvent e){
@@ -107,6 +108,14 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     public void onInteract(BlockPistonEvent e){
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockPistonEvent = false){
+                e.setCancelled(true);
+            }
+        }
+    }
+    @EventHandler
+    public void onInteract(BlockPistonExtendEvent e){
+        if(e.getBlock().getType() != Material.AIR) {
+            if(BlockPistonExtendEvent = false){
                 e.setCancelled(true);
             }
         }
@@ -210,6 +219,18 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
                 }
             }
 
+            if(args[0].equalsIgnoreCase("BlockPistonExtendEvent")) {
+
+                if(args[1].equalsIgnoreCase("true"))  {
+                    BlockPistonExtendEvent = true;
+                    p.sendMessage(ChatColor.GREEN + "BlockPistonExtendEvent를 true로 설정하였습니다");
+                }
+                else if(args[1].equalsIgnoreCase("false")){
+                    BlockPistonExtendEvent = false;
+                    p.sendMessage(ChatColor.GREEN + "BlockPistonExtendEvent를 false로 설정하였습니다");
+                }
+            }
+
         }
         return false;
     }
@@ -220,7 +241,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
             if (args.length == 1) {
                 return Arrays.asList("BlockBreakEvent","BlockPlaceEvent","BlockBurnEvent",
                         "BlockDamageEvent","BlockDispenseEvent","BlockGrowEvent","SignChangeEvent",
-                        "BlockPistonEvent");
+                        "BlockPistonEvent","BlockPistonExtendEvent");
             }
             else if(args.length == 2) {
                 if (args[0].equals("BlockBreakEvent")){
@@ -245,6 +266,9 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
                     return Arrays.asList("true","false");
                 }
                 else if(args[0].equals("BlockPistonEvent")) {
+                    return Arrays.asList("true","false");
+                }
+                else if(args[0].equals("BlockPistonExtendEvent")) {
                     return Arrays.asList("true","false");
                 }
             }
