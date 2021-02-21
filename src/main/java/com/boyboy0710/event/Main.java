@@ -45,6 +45,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     public boolean BlockPistonRetractEvent = true;
     public boolean NotePlayEvent = true;
     public boolean BlockSpreadEvent = true;
+    public boolean BlockIgniteEvent = true;
 
     @EventHandler
     public void onInteract(BlockBreakEvent e){
@@ -145,6 +146,15 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     public void onInteract(BlockSpreadEvent e){
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockSpreadEvent = false){
+                e.setCancelled(true);
+            }
+        }
+    }
+
+    @EventHandler
+    public void onInteract(BlockIgniteEvent e){
+        if(e.getBlock().getType() != Material.AIR) {
+            if(BlockIgniteEvent = false){
                 e.setCancelled(true);
             }
         }
@@ -293,6 +303,17 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
                     p.sendMessage(ChatColor.GREEN + "BlockSpreadEvent를 false로 설정하였습니다");
                 }
             }
+            if(args[0].equalsIgnoreCase("BlockIgniteEvent")) {
+
+                if(args[1].equalsIgnoreCase("true"))  {
+                    BlockIgniteEvent = true;
+                    p.sendMessage(ChatColor.GREEN + "BlockIgniteEvent를 true로 설정하였습니다");
+                }
+                else if(args[1].equalsIgnoreCase("false")){
+                    BlockIgniteEvent = false;
+                    p.sendMessage(ChatColor.GREEN + "BlockIgniteEvent를 false로 설정하였습니다");
+                }
+            }
 
         }
         return false;
@@ -302,7 +323,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (command.getName().equals("event")) {
             if (args.length == 1) {
-                return Arrays.asList("BlockBreakEvent","BlockPlaceEvent","BlockBurnEvent",
+                return Arrays.asList("BlockBreakEvent","BlockPlaceEvent","BlockBurnEvent","BlockIgniteEvent",
                         "BlockDamageEvent","BlockDispenseEvent","BlockGrowEvent","SignChangeEvent","BlockSpreadEvent",
                         "BlockPistonEvent","BlockPistonExtendEvent","BlockPistonRetractEvent","NotePlayEvent");
             }
@@ -341,6 +362,9 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
                     return Arrays.asList("true","false");
                 }
                 else if(args[0].equals("BlockSpreadEvent")) {
+                    return Arrays.asList("true","false");
+                }
+                else if(args[0].equals("BlockIgniteEvent")) {
                     return Arrays.asList("true","false");
                 }
             }
