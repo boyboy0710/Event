@@ -7,6 +7,7 @@ import org.bukkit.command.TabExecutor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -32,13 +33,21 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     }
 
     public boolean BlockBreakEvent = true;
+    public boolean BlockPlaceEvent = true;
 
     @EventHandler
-    public void onInteract(org.bukkit.event.block.BlockBreakEvent e){
+    public void onInteract(BlockBreakEvent e){
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockBreakEvent = false){
-                e.setCancelled();
+                e.setCancelled(true);
             }
+        }
+    }
+
+    @EventHandler
+    public void onInteract(BlockPlaceEvent e) {
+        if(e.getBlock().getType() != Material.AIR){
+
         }
     }
 
