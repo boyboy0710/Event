@@ -9,7 +9,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.*;
+import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.weather.LightningStrikeEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
@@ -46,6 +48,8 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     public boolean NotePlayEvent = true;
     public boolean BlockSpreadEvent = true;
     public boolean BlockIgniteEvent = true;
+    public boolean EnchantItemEvent = true;
+    public boolean LightningStrikeEvent = true;
 
     @EventHandler
     public void onInteract(BlockBreakEvent e){
@@ -155,6 +159,23 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     public void onInteract(BlockIgniteEvent e){
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockIgniteEvent = false){
+                e.setCancelled(true);
+            }
+        }
+    }
+    @EventHandler
+    public void onInteract(EnchantItemEvent e){
+        if(e.getItem().getType() != Material.AIR) {
+            if(EnchantItemEvent = false){
+                e.setCancelled(true);
+            }
+        }
+    }
+
+    @EventHandler
+    public void onInteract(LightningStrikeEvent e){
+        if(e.getWorld().getTime() != 1) {
+            if (LightningStrikeEvent = false) {
                 e.setCancelled(true);
             }
         }
@@ -314,6 +335,28 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
                     p.sendMessage(ChatColor.GREEN + "BlockIgniteEvent를 false로 설정하였습니다");
                 }
             }
+            if(args[0].equalsIgnoreCase("EnchantItemEvent")) {
+
+                if(args[1].equalsIgnoreCase("true"))  {
+                    EnchantItemEvent = true;
+                    p.sendMessage(ChatColor.GREEN + "EnchantItemEvent를 true로 설정하였습니다");
+                }
+                else if(args[1].equalsIgnoreCase("false")){
+                    EnchantItemEvent = false;
+                    p.sendMessage(ChatColor.GREEN + "EnchantItemEvent를 false로 설정하였습니다");
+                }
+            }
+            if(args[0].equalsIgnoreCase("LightningStrikeEvent")) {
+
+                if(args[1].equalsIgnoreCase("true"))  {
+                    LightningStrikeEvent = true;
+                    p.sendMessage(ChatColor.GREEN + "LightningStrikeEvent를 true로 설정하였습니다");
+                }
+                else if(args[1].equalsIgnoreCase("false")){
+                    LightningStrikeEvent = false;
+                    p.sendMessage(ChatColor.GREEN + "LightningStrikeEvent를 false로 설정하였습니다");
+                }
+            }
 
         }
         return false;
@@ -325,7 +368,8 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
             if (args.length == 1) {
                 return Arrays.asList("BlockBreakEvent","BlockPlaceEvent","BlockBurnEvent","BlockIgniteEvent",
                         "BlockDamageEvent","BlockDispenseEvent","BlockGrowEvent","SignChangeEvent","BlockSpreadEvent",
-                        "BlockPistonEvent","BlockPistonExtendEvent","BlockPistonRetractEvent","NotePlayEvent");
+                        "BlockPistonEvent","BlockPistonExtendEvent","BlockPistonRetractEvent","NotePlayEvent",
+                        "EnchantItemEvent","LightningStrikeEvent");
             }
             else if(args.length == 2) {
                 if (args[0].equals("BlockBreakEvent")){
@@ -365,6 +409,12 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
                     return Arrays.asList("true","false");
                 }
                 else if(args[0].equals("BlockIgniteEvent")) {
+                    return Arrays.asList("true","false");
+                }
+                else if(args[0].equals("EnchantItemEvent")) {
+                    return Arrays.asList("true","false");
+                }
+                else if(args[0].equals("LightningStrikeEvent")) {
                     return Arrays.asList("true","false");
                 }
             }
