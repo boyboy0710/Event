@@ -5,11 +5,13 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.*;
 import org.bukkit.event.enchantment.EnchantItemEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.weather.LightningStrikeEvent;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -50,6 +52,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     public boolean BlockIgniteEvent = true;
     public boolean EnchantItemEvent = true;
     public boolean LightningStrikeEvent = true;
+    public boolean CreatureSpawnEvent = true;
 
     @EventHandler
     public void onInteract(BlockBreakEvent e){
@@ -176,6 +179,15 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     public void onInteract(LightningStrikeEvent e){
         if(e.getWorld().getTime() != 1) {
             if (LightningStrikeEvent = false) {
+                e.setCancelled(true);
+            }
+        }
+    }
+
+    @EventHandler
+    public void onInteract(CreatureSpawnEvent e){
+        if(e.getEntity().getType() != EntityType.ENDER_DRAGON) {
+            if (CreatureSpawnEvent = false) {
                 e.setCancelled(true);
             }
         }
@@ -357,6 +369,17 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
                     p.sendMessage(ChatColor.GREEN + "LightningStrikeEvent를 false로 설정하였습니다");
                 }
             }
+            if(args[0].equalsIgnoreCase("CreatureSpawnEvent")) {
+
+                if(args[1].equalsIgnoreCase("true"))  {
+                    CreatureSpawnEvent = true;
+                    p.sendMessage(ChatColor.GREEN + "CreatureSpawnEvent를 true로 설정하였습니다");
+                }
+                else if(args[1].equalsIgnoreCase("false")){
+                    CreatureSpawnEvent = false;
+                    p.sendMessage(ChatColor.GREEN + "CreatureSpawnEvent를 false로 설정하였습니다");
+                }
+            }
 
         }
         return false;
@@ -369,7 +392,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
                 return Arrays.asList("BlockBreakEvent","BlockPlaceEvent","BlockBurnEvent","BlockIgniteEvent",
                         "BlockDamageEvent","BlockDispenseEvent","BlockGrowEvent","SignChangeEvent","BlockSpreadEvent",
                         "BlockPistonEvent","BlockPistonExtendEvent","BlockPistonRetractEvent","NotePlayEvent",
-                        "EnchantItemEvent","LightningStrikeEvent");
+                        "EnchantItemEvent","LightningStrikeEvent","CreatureSpawnEvent");
             }
             else if(args.length == 2) {
                 if (args[0].equals("BlockBreakEvent")){
@@ -415,6 +438,9 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
                     return Arrays.asList("true","false");
                 }
                 else if(args[0].equals("LightningStrikeEvent")) {
+                    return Arrays.asList("true","false");
+                }
+                else if(args[0].equals("CreatureSpawnEvent")) {
                     return Arrays.asList("true","false");
                 }
             }
