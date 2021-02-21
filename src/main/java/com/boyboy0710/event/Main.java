@@ -8,10 +8,7 @@ import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockBurnEvent;
-import org.bukkit.event.block.BlockDamageEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.block.*;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -40,6 +37,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     public boolean BlockPlaceEvent = true;
     public boolean BlockBurnEvent = true;
     public boolean BlockDamageEvent = true;
+    public boolean BlockDispenseEvent = true;
 
     @EventHandler
     public void onInteract(BlockBreakEvent e){
@@ -72,6 +70,15 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     public void onInteract(BlockDamageEvent e) {
         if(e.getBlock().getType() != Material.AIR){
             if (BlockDamageEvent = false){
+                e.setCancelled(true);
+            }
+        }
+    }
+
+    @EventHandler
+    public void onInteract(BlockDispenseEvent e){
+        if(e.getBlock().getType() != Material.AIR) {
+            if(BlockDispenseEvent = false){
                 e.setCancelled(true);
             }
         }
@@ -126,6 +133,18 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
                     p.sendMessage(ChatColor.GREEN + "BlockDamageEvent를 false로 설정하였습니다");
                 }
             }
+
+            if(args[0].equalsIgnoreCase("BlockDispenseEvent")) {
+
+                if(args[1].equalsIgnoreCase("true"))  {
+                    BlockDispenseEvent = true;
+                    p.sendMessage(ChatColor.GREEN + "BlockDispenseEvent를 true로 설정하였습니다");
+                }
+                else if(args[1].equalsIgnoreCase("false")){
+                    BlockDispenseEvent = false;
+                    p.sendMessage(ChatColor.GREEN + "BlockDispenseEvent를 false로 설정하였습니다");
+                }
+            }
         }
         return false;
     }
@@ -134,7 +153,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (command.getName().equals("event")) {
             if (args.length == 1) {
-                return Arrays.asList("BlockBreakEvent","BlockPlaceEvent","BlockBurnEvent","BlockDamageEvent");
+                return Arrays.asList("BlockBreakEvent","BlockPlaceEvent","BlockBurnEvent","BlockDamageEvent","BlockDispenseEvent");
             }
             else if(args.length == 2) {
                 if (args[0].equals("BlockBreakEvent")){
@@ -147,6 +166,9 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
                     return Arrays.asList("true","false");
                 }
                 else if(args[0].equals("BlockDamageEvent")) {
+                    return Arrays.asList("true","false");
+                }
+                else if(args[0].equals("BlockDispenseEvent")) {
                     return Arrays.asList("true","false");
                 }
             }
