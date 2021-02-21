@@ -55,18 +55,22 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
 
     @EventHandler
     public void onInteract(BlockBreakEvent e){
+        Player p = e.getPlayer();
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockBreakEvent = false){
                 e.setCancelled(true);
+                p.sendMessage(ChatColor.RED + "BlockBreakEvent가 false 로 설정되어있습니다");
             }
         }
     }
 
     @EventHandler
     public void onInteract(BlockPlaceEvent e) {
+        Player p = e.getPlayer();
         if(e.getBlock().getType() != Material.AIR){
             if(BlockPlaceEvent = false){
                 e.setCancelled(true);
+                p.sendMessage(ChatColor.RED + "BlockPlaceEvent가 false 로 설정되어있습니다");
             }
         }
     }
@@ -82,9 +86,11 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
 
     @EventHandler
     public void onInteract(BlockDamageEvent e) {
+        Player p = e.getPlayer();
         if(e.getBlock().getType() != Material.AIR){
             if (BlockDamageEvent = false){
                 e.setCancelled(true);
+                p.sendMessage(ChatColor.RED + "BlockDamageEvent가 false 로 설정되어있습니다");
             }
         }
     }
@@ -94,6 +100,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockDispenseEvent = false){
                 e.setCancelled(true);
+
             }
         }
     }
@@ -108,9 +115,11 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     }
     @EventHandler
     public void onInteract(SignChangeEvent e){
+        Player p = e.getPlayer();
         if(e.getBlock().getType() != Material.AIR) {
             if(SignChangeEvent = false){
                 e.setCancelled(true);
+                p.sendMessage(ChatColor.RED + "SignChangeEvent가 false 로 설정되어있습니다");
             }
         }
     }
@@ -159,9 +168,11 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
 
     @EventHandler
     public void onInteract(BlockIgniteEvent e){
+        Player p = e.getPlayer();
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockIgniteEvent = false){
                 e.setCancelled(true);
+                p.sendMessage(ChatColor.RED + "BlockIgniteEvent가 false 로 설정되어있습니다");
             }
         }
     }
