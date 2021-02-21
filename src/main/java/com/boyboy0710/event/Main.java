@@ -10,6 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockBurnEvent;
+import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -38,6 +39,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     public boolean BlockBreakEvent = true;
     public boolean BlockPlaceEvent = true;
     public boolean BlockBurnEvent = true;
+    public boolean BlockDamageEvent = true;
 
     @EventHandler
     public void onInteract(BlockBreakEvent e){
@@ -61,6 +63,15 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     public void onInteract(BlockBurnEvent e){
         if (e.getBlock().getType() != Material.AIR){
             if(BlockBurnEvent = false){
+                e.setCancelled(true);
+            }
+        }
+    }
+
+    @EventHandler
+    public void onInteract(BlockDamageEvent e) {
+        if(e.getBlock().getType() != Material.AIR){
+            if (BlockDamageEvent = false){
                 e.setCancelled(true);
             }
         }
@@ -105,6 +116,16 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
                 }
 
             }
+            if (args[0].equalsIgnoreCase("BlockDamageEvent")){
+                if (args[1].equalsIgnoreCase("true")){
+                    BlockDamageEvent = true;
+                    p.sendMessage(ChatColor.GREEN + "BlockDamageEvent를 true로 설정하였습니다");
+                }
+                else if(args[1].equalsIgnoreCase("false")) {
+                    BlockDamageEvent = false;
+                    p.sendMessage(ChatColor.GREEN + "BlockDamageEvent를 false로 설정하였습니다");
+                }
+            }
         }
         return false;
     }
@@ -113,7 +134,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (command.getName().equals("event")) {
             if (args.length == 1) {
-                return Arrays.asList("BlockBreakEvent","BlockPlaceEvent","BlockBurnEvent");
+                return Arrays.asList("BlockBreakEvent","BlockPlaceEvent","BlockBurnEvent","BlockDamageEvent");
             }
             else if(args.length == 2) {
                 if (args[0].equals("BlockBreakEvent")){
@@ -123,6 +144,9 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
                     return Arrays.asList("true" , "false");
                 }
                 else if(args[0].equals("BlockBurnEvent")){
+                    return Arrays.asList("true","false");
+                }
+                else if(args[0].equals("BlockDamageEvent")) {
                     return Arrays.asList("true","false");
                 }
             }
