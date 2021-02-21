@@ -1,9 +1,11 @@
 package com.boyboy0710.event;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -47,21 +49,37 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     @EventHandler
     public void onInteract(BlockPlaceEvent e) {
         if(e.getBlock().getType() != Material.AIR){
-
+            if(BlockPlaceEvent = false){
+                e.setCancelled(true);
+            }
         }
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(cmd.getName().equalsIgnoreCase("event")) {
+            Player p = (Player) sender;
 
             if(args[0].equalsIgnoreCase("BlockBreakEvent")) {
 
                 if(args[1].equalsIgnoreCase("true"))  {
                     BlockBreakEvent = true;
+                    p.sendMessage(ChatColor.GREEN + "BlockBreakEvent를 true로 설정하였습니다");
                 }
                 else if(args[1].equalsIgnoreCase("false")){
                     BlockBreakEvent = false;
+                    p.sendMessage(ChatColor.GREEN + "BlockBreakEvent를 false로 설정하였습니다");
+                }
+            }
+            if (args[0].equalsIgnoreCase("BlockPlaceEvent")){
+
+                if(args[1].equalsIgnoreCase("true")) {
+                    BlockPlaceEvent = true;
+                    p.sendMessage(ChatColor.GREEN + "BlockPlaceEvent를 true로 설정하였습니다");
+                }
+                else if(args[1].equalsIgnoreCase("false")) {
+                    BlockPlaceEvent = false;
+                    p.sendMessage(ChatColor.GREEN + "BlockPlaceEvent를 false로 설정하였습니다");
                 }
             }
         }
@@ -72,11 +90,14 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (command.getName().equals("event")) {
             if (args.length == 1) {
-                return Arrays.asList("BlockBreakEvent");
+                return Arrays.asList("BlockBreakEvent","BlockPlaceEvent");
             }
             else if(args.length == 2) {
                 if (args[0].equals("BlockBreakEvent")){
                     return  Arrays.asList("false","true");
+                }
+                else if(args[0].equals("BlockPlaceEvent")) {
+                    return Arrays.asList("true" , "false");
                 }
             }
         }
