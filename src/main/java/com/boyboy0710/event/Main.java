@@ -54,18 +54,16 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     public boolean CreatureSpawnEvent = true;
 
     @EventHandler
-    public void onInteract(BlockBreakEvent e){
+    public void onBreak(BlockBreakEvent e){
         Player p = e.getPlayer();
-        if(e.getBlock().getType() != Material.AIR) {
             if(BlockBreakEvent = false){
                 e.setCancelled(true);
                 p.sendMessage(ChatColor.RED + "BlockBreakEvent가 false 로 설정되어있습니다");
-            }
         }
     }
 
     @EventHandler
-    public void onInteract(BlockPlaceEvent e) {
+    public void onPlace(BlockPlaceEvent e) {
         Player p = e.getPlayer();
         if(e.getBlock().getType() != Material.AIR){
             if(BlockPlaceEvent = false){
@@ -76,7 +74,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     }
 
     @EventHandler
-    public void onInteract(BlockBurnEvent e){
+    public void onBurn(BlockBurnEvent e){
         if (e.getBlock().getType() != Material.AIR){
             if(BlockBurnEvent = false){
                 e.setCancelled(true);
@@ -85,7 +83,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     }
 
     @EventHandler
-    public void onInteract(BlockDamageEvent e) {
+    public void onDamage(BlockDamageEvent e) {
         Player p = e.getPlayer();
         if(e.getBlock().getType() != Material.AIR){
             if (BlockDamageEvent = false){
@@ -96,7 +94,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     }
 
     @EventHandler
-    public void onInteract(BlockDispenseEvent e){
+    public void onDispense(BlockDispenseEvent e){
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockDispenseEvent = false){
                 e.setCancelled(true);
@@ -106,7 +104,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     }
 
     @EventHandler
-    public void onInteract(BlockGrowEvent e){
+    public void onGrow(BlockGrowEvent e){
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockGrowEvent = false){
                 e.setCancelled(true);
@@ -114,7 +112,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
         }
     }
     @EventHandler
-    public void onInteract(SignChangeEvent e){
+    public void onSignChange(SignChangeEvent e){
         Player p = e.getPlayer();
         if(e.getBlock().getType() != Material.AIR) {
             if(SignChangeEvent = false){
@@ -124,7 +122,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
         }
     }
     @EventHandler
-    public void onInteract(BlockPistonEvent e){
+    public void onPiston(BlockPistonEvent e){
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockPistonEvent = false){
                 e.setCancelled(true);
@@ -132,7 +130,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
         }
     }
     @EventHandler
-    public void onInteract(BlockPistonExtendEvent e){
+    public void onPistonExtend(BlockPistonExtendEvent e){
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockPistonExtendEvent = false){
                 e.setCancelled(true);
@@ -141,7 +139,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     }
 
     @EventHandler
-    public void onInteract(BlockPistonRetractEvent e){
+    public void onPistonRetract(BlockPistonRetractEvent e){
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockPistonRetractEvent = false){
                 e.setCancelled(true);
@@ -149,7 +147,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
         }
     }
     @EventHandler
-    public void onInteract(NotePlayEvent e){
+    public void onNotePlay(NotePlayEvent e){
         if(e.getBlock().getType() != Material.AIR) {
             if(NotePlayEvent = false){
                 e.setCancelled(true);
@@ -158,7 +156,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     }
 
     @EventHandler
-    public void onInteract(BlockSpreadEvent e){
+    public void onSpread(BlockSpreadEvent e){
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockSpreadEvent = false){
                 e.setCancelled(true);
@@ -167,7 +165,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     }
 
     @EventHandler
-    public void onInteract(BlockIgniteEvent e){
+    public void onIgnite(BlockIgniteEvent e){
         Player p = e.getPlayer();
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockIgniteEvent = false){
@@ -177,7 +175,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
         }
     }
     @EventHandler
-    public void onInteract(EnchantItemEvent e){
+    public void onEnchantItem(EnchantItemEvent e){
         if(e.getItem().getType() != Material.AIR) {
             if(EnchantItemEvent = false){
                 e.setCancelled(true);
@@ -186,7 +184,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     }
 
     @EventHandler
-    public void onInteract(LightningStrikeEvent e){
+    public void onLightningStrike(LightningStrikeEvent e){
         if(e.getWorld().getTime() != 1) {
             if (LightningStrikeEvent = false) {
                 e.setCancelled(true);
@@ -195,7 +193,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     }
 
     @EventHandler
-    public void onInteract(CreatureSpawnEvent e){
+    public void onCreatureSpawn(CreatureSpawnEvent e){
         if(e.getEntity().getType() != EntityType.ENDER_DRAGON) {
             if (CreatureSpawnEvent = false) {
                 e.setCancelled(true);
@@ -383,7 +381,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
 
                 if(args[1].equalsIgnoreCase("true"))  {
                     CreatureSpawnEvent = true;
-                    p.sendMessage(ChatColor.GREEN + "CreatureSpawnEvent를 true로 설정하였습니다");
+                    p.sendMessage(ChatColor.GREEN + "CreatureSpawnEvent를 true로 설정하였습니다(앤더드래곤 미포함)");
                 }
                 else if(args[1].equalsIgnoreCase("false")){
                     CreatureSpawnEvent = false;
