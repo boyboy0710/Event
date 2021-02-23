@@ -60,6 +60,9 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
                 e.setCancelled(true);
                 p.sendMessage(ChatColor.RED + "BlockBreakEvent가 false 로 설정되어있습니다");
         }
+            else  {
+                e.setCancelled(false);
+            }
     }
 
     @EventHandler
@@ -70,6 +73,9 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
                 e.setCancelled(true);
                 p.sendMessage(ChatColor.RED + "BlockPlaceEvent가 false 로 설정되어있습니다");
             }
+            else  {
+                e.setCancelled(false);
+            }
         }
     }
 
@@ -78,6 +84,9 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
         if (e.getBlock().getType() != Material.AIR){
             if(BlockBurnEvent = false){
                 e.setCancelled(true);
+            }
+            else  {
+                e.setCancelled(false);
             }
         }
     }
@@ -90,6 +99,9 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
                 e.setCancelled(true);
                 p.sendMessage(ChatColor.RED + "BlockDamageEvent가 false 로 설정되어있습니다");
             }
+            else  {
+                e.setCancelled(false);
+            }
         }
     }
 
@@ -100,6 +112,9 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
                 e.setCancelled(true);
 
             }
+            else  {
+                e.setCancelled(false);
+            }
         }
     }
 
@@ -108,6 +123,9 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockGrowEvent = false){
                 e.setCancelled(true);
+            }
+            else  {
+                e.setCancelled(false);
             }
         }
     }
@@ -119,6 +137,9 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
                 e.setCancelled(true);
                 p.sendMessage(ChatColor.RED + "SignChangeEvent가 false 로 설정되어있습니다");
             }
+            else  {
+                e.setCancelled(false);
+            }
         }
     }
     @EventHandler
@@ -127,6 +148,9 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
             if(BlockPistonEvent = false){
                 e.setCancelled(true);
             }
+            else  {
+                e.setCancelled(false);
+            }
         }
     }
     @EventHandler
@@ -134,6 +158,9 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockPistonExtendEvent = false){
                 e.setCancelled(true);
+            }
+            else  {
+                e.setCancelled(false);
             }
         }
     }
@@ -144,6 +171,9 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
             if(BlockPistonRetractEvent = false){
                 e.setCancelled(true);
             }
+            else  {
+                e.setCancelled(false);
+            }
         }
     }
     @EventHandler
@@ -151,6 +181,9 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
         if(e.getBlock().getType() != Material.AIR) {
             if(NotePlayEvent = false){
                 e.setCancelled(true);
+            }
+            else  {
+                e.setCancelled(false);
             }
         }
     }
@@ -160,6 +193,9 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockSpreadEvent = false){
                 e.setCancelled(true);
+            }
+            else  {
+                e.setCancelled(false);
             }
         }
     }
@@ -172,6 +208,9 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
                 e.setCancelled(true);
                 p.sendMessage(ChatColor.RED + "BlockIgniteEvent가 false 로 설정되어있습니다");
             }
+            else  {
+                e.setCancelled(false);
+            }
         }
     }
     @EventHandler
@@ -179,6 +218,9 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
         if(e.getItem().getType() != Material.AIR) {
             if(EnchantItemEvent = false){
                 e.setCancelled(true);
+            }
+            else  {
+                e.setCancelled(false);
             }
         }
     }
@@ -189,6 +231,9 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
             if (LightningStrikeEvent = false) {
                 e.setCancelled(true);
             }
+            else  {
+                e.setCancelled(false);
+            }
         }
     }
 
@@ -197,6 +242,9 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
         if(e.getEntity().getType() != EntityType.ENDER_DRAGON) {
             if (CreatureSpawnEvent = false) {
                 e.setCancelled(true);
+            }
+            else  {
+                e.setCancelled(false);
             }
         }
     }
