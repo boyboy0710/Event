@@ -54,7 +54,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     public boolean CreatureSpawnEvent = true;
 
     @EventHandler
-    public void onBreak(BlockBreakEvent e){
+    public void onBlockBreakEvent(BlockBreakEvent e){
         Player p = e.getPlayer();
             if(BlockBreakEvent = false){
                 e.setCancelled(true);
@@ -66,7 +66,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     }
 
     @EventHandler
-    public void onPlace(BlockPlaceEvent e) {
+    public void onBlockPlaceEvent(BlockPlaceEvent e) {
         Player p = e.getPlayer();
         if(e.getBlock().getType() != Material.AIR){
             if(BlockPlaceEvent = false){
@@ -80,7 +80,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     }
 
     @EventHandler
-    public void onBurn(BlockBurnEvent e){
+    public void onBlockBurnEvent(BlockBurnEvent e){
         if (e.getBlock().getType() != Material.AIR){
             if(BlockBurnEvent = false){
                 e.setCancelled(true);
@@ -92,7 +92,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     }
 
     @EventHandler
-    public void onDamage(BlockDamageEvent e) {
+    public void onBlockDamageEvent(BlockDamageEvent e) {
         Player p = e.getPlayer();
         if(e.getBlock().getType() != Material.AIR){
             if (BlockDamageEvent = false){
@@ -106,7 +106,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     }
 
     @EventHandler
-    public void onDispense(BlockDispenseEvent e){
+    public void onBlockDispenseEvent(BlockDispenseEvent e){
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockDispenseEvent = false){
                 e.setCancelled(true);
@@ -119,7 +119,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     }
 
     @EventHandler
-    public void onGrow(BlockGrowEvent e){
+    public void onBlockGrowEvent(BlockGrowEvent e){
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockGrowEvent = false){
                 e.setCancelled(true);
@@ -130,7 +130,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
         }
     }
     @EventHandler
-    public void onSignChange(SignChangeEvent e){
+    public void onSignChangeEvent(SignChangeEvent e){
         Player p = e.getPlayer();
         if(e.getBlock().getType() != Material.AIR) {
             if(SignChangeEvent = false){
@@ -143,7 +143,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
         }
     }
     @EventHandler
-    public void onPiston(BlockPistonEvent e){
+    public void onBlockPistonEvent(BlockPistonEvent e){
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockPistonEvent = false){
                 e.setCancelled(true);
@@ -154,7 +154,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
         }
     }
     @EventHandler
-    public void onPistonExtend(BlockPistonExtendEvent e){
+    public void onBlockPistonExtendEvent(BlockPistonExtendEvent e){
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockPistonExtendEvent = false){
                 e.setCancelled(true);
@@ -166,7 +166,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     }
 
     @EventHandler
-    public void onPistonRetract(BlockPistonRetractEvent e){
+    public void onBlockPistonRetractEvent(BlockPistonRetractEvent e){
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockPistonRetractEvent = false){
                 e.setCancelled(true);
@@ -177,7 +177,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
         }
     }
     @EventHandler
-    public void onNotePlay(NotePlayEvent e){
+    public void onNotePlayEvent(NotePlayEvent e){
         if(e.getBlock().getType() != Material.AIR) {
             if(NotePlayEvent = false){
                 e.setCancelled(true);
@@ -189,7 +189,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     }
 
     @EventHandler
-    public void onSpread(BlockSpreadEvent e){
+    public void onBlockSpreadEvent(BlockSpreadEvent e){
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockSpreadEvent = false){
                 e.setCancelled(true);
@@ -201,7 +201,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     }
 
     @EventHandler
-    public void onIgnite(BlockIgniteEvent e){
+    public void onBlockIgniteEvent(BlockIgniteEvent e){
         Player p = e.getPlayer();
         if(e.getBlock().getType() != Material.AIR) {
             if(BlockIgniteEvent = false){
@@ -214,7 +214,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
         }
     }
     @EventHandler
-    public void onEnchantItem(EnchantItemEvent e){
+    public void onEnchantItemEvent(EnchantItemEvent e){
         if(e.getItem().getType() != Material.AIR) {
             if(EnchantItemEvent = false){
                 e.setCancelled(true);
@@ -226,7 +226,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     }
 
     @EventHandler
-    public void onLightningStrike(LightningStrikeEvent e){
+    public void onLightningStrikeEvent(LightningStrikeEvent e){
         if(e.getWorld().getTime() != 1) {
             if (LightningStrikeEvent = false) {
                 e.setCancelled(true);
@@ -238,7 +238,7 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     }
 
     @EventHandler
-    public void onCreatureSpawn(CreatureSpawnEvent e){
+    public void onCreatureSpawnEvent(CreatureSpawnEvent e){
         if(e.getEntity().getType() != EntityType.ENDER_DRAGON) {
             if (CreatureSpawnEvent = false) {
                 e.setCancelled(true);
