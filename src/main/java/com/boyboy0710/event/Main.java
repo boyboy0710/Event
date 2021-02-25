@@ -12,6 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.*;
 import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.inventory.BrewEvent;
 import org.bukkit.event.weather.LightningStrikeEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -28,7 +29,6 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
 
         getCommand("event").setExecutor(new Main()); //Executor을 등록하는 매소드
         getCommand("event").setTabCompleter(new Main()); //TabCompleter을 등록하는 매소드
-
     }
 
     @Override
@@ -49,203 +49,147 @@ public final class Main extends JavaPlugin implements TabExecutor, Listener {
     public boolean NotePlayEvent = true;
     public boolean BlockSpreadEvent = true;
     public boolean BlockIgniteEvent = true;
+
     public boolean EnchantItemEvent = true;
+
     public boolean LightningStrikeEvent = true;
+
     public boolean CreatureSpawnEvent = true;
 
+    public boolean BrewEvent = true;
+    public boolean CraftItemEvent = true;
+    public boolean FurnaceBurnEvent = true;
+    public boolean FurnaceExtractEvent = true;
+    public boolean InventoryClickEvent = true;
+    public boolean InventoryCreativeEvent = true;
+    public boolean InventoryDragEvent = true;
+    public boolean InventoryEvent = true;
+    public boolean InventoryInteractEvent = true;
+
     @EventHandler
-    public void onBlockBreakEvent(BlockBreakEvent e){
+    public void onBrewEvent(BrewEvent e){
+        if(e.getBlock().getType() != Material.AIR) {
+            e.setCancelled(BrewEvent);
+
+        }
+
+    }
+
+    @EventHandler
+    public void onBlockEvent(BlockBreakEvent e){
         Player p = e.getPlayer();
-            if(BlockBreakEvent = false){
-                e.setCancelled(true);
+            if(e.getBlock().getType() != Material.AIR) {
+                e.setCancelled(BlockBreakEvent);
                 p.sendMessage(ChatColor.RED + "BlockBreakEvent가 false 로 설정되어있습니다");
-        }
-            else  {
-                e.setCancelled(false);
             }
+
     }
 
     @EventHandler
-    public void onBlockPlaceEvent(BlockPlaceEvent e) {
+    public void onBlockEvent(BlockPlaceEvent e) {
         Player p = e.getPlayer();
         if(e.getBlock().getType() != Material.AIR){
-            if(BlockPlaceEvent = false){
-                e.setCancelled(true);
+                e.setCancelled(BlockPlaceEvent);
                 p.sendMessage(ChatColor.RED + "BlockPlaceEvent가 false 로 설정되어있습니다");
-            }
-            else  {
-                e.setCancelled(false);
-            }
         }
     }
 
     @EventHandler
-    public void onBlockBurnEvent(BlockBurnEvent e){
+    public void onBlockEvent(BlockBurnEvent e){
         if (e.getBlock().getType() != Material.AIR){
-            if(BlockBurnEvent = false){
-                e.setCancelled(true);
-            }
-            else  {
-                e.setCancelled(false);
-            }
+                e.setCancelled(BlockBurnEvent);
         }
     }
 
     @EventHandler
-    public void onBlockDamageEvent(BlockDamageEvent e) {
+    public void onBlockEvent(BlockDamageEvent e) {
         Player p = e.getPlayer();
         if(e.getBlock().getType() != Material.AIR){
-            if (BlockDamageEvent = false){
-                e.setCancelled(true);
+                e.setCancelled(BlockDamageEvent);
                 p.sendMessage(ChatColor.RED + "BlockDamageEvent가 false 로 설정되어있습니다");
-            }
-            else  {
-                e.setCancelled(false);
-            }
         }
     }
 
     @EventHandler
-    public void onBlockDispenseEvent(BlockDispenseEvent e){
+    public void onBlockEvent(BlockDispenseEvent e){
         if(e.getBlock().getType() != Material.AIR) {
-            if(BlockDispenseEvent = false){
-                e.setCancelled(true);
-
-            }
-            else  {
-                e.setCancelled(false);
-            }
+                e.setCancelled(BlockDispenseEvent);
         }
     }
 
     @EventHandler
-    public void onBlockGrowEvent(BlockGrowEvent e){
+    public void onBlockEvent(BlockGrowEvent e){
         if(e.getBlock().getType() != Material.AIR) {
-            if(BlockGrowEvent = false){
-                e.setCancelled(true);
-            }
-            else  {
-                e.setCancelled(false);
-            }
+                e.setCancelled(BlockGrowEvent);
         }
     }
     @EventHandler
-    public void onSignChangeEvent(SignChangeEvent e){
+    public void onBlockEvent(SignChangeEvent e){
         Player p = e.getPlayer();
         if(e.getBlock().getType() != Material.AIR) {
-            if(SignChangeEvent = false){
-                e.setCancelled(true);
+                e.setCancelled(SignChangeEvent);
                 p.sendMessage(ChatColor.RED + "SignChangeEvent가 false 로 설정되어있습니다");
-            }
-            else  {
-                e.setCancelled(false);
-            }
         }
     }
     @EventHandler
-    public void onBlockPistonEvent(BlockPistonEvent e){
+    public void onBlockEvent(BlockPistonEvent e){
         if(e.getBlock().getType() != Material.AIR) {
-            if(BlockPistonEvent = false){
-                e.setCancelled(true);
-            }
-            else  {
-                e.setCancelled(false);
-            }
+                e.setCancelled(BlockPistonEvent);
         }
     }
     @EventHandler
-    public void onBlockPistonExtendEvent(BlockPistonExtendEvent e){
+    public void onBlockEvent(BlockPistonExtendEvent e){
         if(e.getBlock().getType() != Material.AIR) {
-            if(BlockPistonExtendEvent = false){
-                e.setCancelled(true);
-            }
-            else  {
-                e.setCancelled(false);
-            }
+                e.setCancelled(BlockPistonExtendEvent);
         }
     }
 
     @EventHandler
-    public void onBlockPistonRetractEvent(BlockPistonRetractEvent e){
+    public void onBlockEvent(BlockPistonRetractEvent e){
         if(e.getBlock().getType() != Material.AIR) {
-            if(BlockPistonRetractEvent = false){
-                e.setCancelled(true);
-            }
-            else  {
-                e.setCancelled(false);
-            }
+                e.setCancelled(BlockPistonRetractEvent);
         }
     }
     @EventHandler
-    public void onNotePlayEvent(NotePlayEvent e){
+    public void onBlockEvent(NotePlayEvent e){
         if(e.getBlock().getType() != Material.AIR) {
-            if(NotePlayEvent = false){
-                e.setCancelled(true);
-            }
-            else  {
-                e.setCancelled(false);
-            }
+                e.setCancelled(NotePlayEvent);
         }
     }
 
     @EventHandler
-    public void onBlockSpreadEvent(BlockSpreadEvent e){
+    public void onBlockEvent(BlockSpreadEvent e){
         if(e.getBlock().getType() != Material.AIR) {
-            if(BlockSpreadEvent = false){
-                e.setCancelled(true);
-            }
-            else  {
-                e.setCancelled(false);
-            }
+                e.setCancelled(BlockSpreadEvent);
         }
     }
 
     @EventHandler
-    public void onBlockIgniteEvent(BlockIgniteEvent e){
+    public void onBlockEvent(BlockIgniteEvent e){
         Player p = e.getPlayer();
         if(e.getBlock().getType() != Material.AIR) {
-            if(BlockIgniteEvent = false){
-                e.setCancelled(true);
+                e.setCancelled(BlockIgniteEvent);
                 p.sendMessage(ChatColor.RED + "BlockIgniteEvent가 false 로 설정되어있습니다");
-            }
-            else  {
-                e.setCancelled(false);
-            }
         }
     }
     @EventHandler
-    public void onEnchantItemEvent(EnchantItemEvent e){
+    public void onEnchantEvent(EnchantItemEvent e){
         if(e.getItem().getType() != Material.AIR) {
-            if(EnchantItemEvent = false){
-                e.setCancelled(true);
-            }
-            else  {
-                e.setCancelled(false);
-            }
+                e.setCancelled(EnchantItemEvent);
         }
     }
 
     @EventHandler
     public void onLightningStrikeEvent(LightningStrikeEvent e){
         if(e.getWorld().getTime() != 1) {
-            if (LightningStrikeEvent = false) {
-                e.setCancelled(true);
-            }
-            else  {
-                e.setCancelled(false);
-            }
+                e.setCancelled(LightningStrikeEvent);
         }
     }
 
     @EventHandler
     public void onCreatureSpawnEvent(CreatureSpawnEvent e){
         if(e.getEntity().getType() != EntityType.ENDER_DRAGON) {
-            if (CreatureSpawnEvent = false) {
-                e.setCancelled(true);
-            }
-            else  {
-                e.setCancelled(false);
-            }
+                e.setCancelled(CreatureSpawnEvent);
         }
     }
 
